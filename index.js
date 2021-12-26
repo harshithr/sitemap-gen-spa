@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const Client = require('ssh2-sftp-client');
-const pup = require('puppeteer');
 const { parse } = require('node-html-parser');
 
 class Sitemap {
@@ -68,25 +67,25 @@ class Sitemap {
     fs.appendFileSync('sitemap.xml', postfix);
   }
 
-  submitToGoogle = async (username) => {
-    const browser = await pup.launch({ headless: false });
-    const page = await browser.newPage();
+  // submitToGoogle = async (username) => {
+  //   const browser = await pup.launch({ headless: false });
+  //   const page = await browser.newPage();
 
-    await page.goto(`https://search.google.com/search-console`);
-    const button = await page.$('.FKF6mc.TpQm9d')
-    await button.evaluate(b => b.click());
-    await page.waitForTimeout(2000);
+  //   await page.goto(`https://search.google.com/search-console`);
+  //   const button = await page.$('.FKF6mc.TpQm9d')
+  //   await button.evaluate(b => b.click());
+  //   await page.waitForTimeout(2000);
 
-    await page.waitForSelector('#identifierId');
+  //   await page.waitForSelector('#identifierId');
 
-    await page.type('#identifierId', username);
+  //   await page.type('#identifierId', username);
 
-    await page.waitForTimeout(4000);
+  //   await page.waitForTimeout(4000);
     
-    const nextBtn = await page.$('.VfPpkd-vQzf8d');
+  //   const nextBtn = await page.$('.VfPpkd-vQzf8d');
 
-    await nextBtn.evaluate(n => n.click());
-  }
+  //   await nextBtn.evaluate(n => n.click());
+  // }
 
 }
 
